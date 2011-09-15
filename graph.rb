@@ -74,43 +74,4 @@ class Graph
             end
         end
     end
-
 end
-
-graph = Graph.new('myGraph')
-
-# add vertices
-a, b, c, d, e, f, g, h, i = Vertex.new('a'), Vertex.new('b'), Vertex.new('c'), Vertex.new('d'), Vertex.new('e'), Vertex.new('f'), Vertex.new('g'), Vertex.new('h'), Vertex.new('i')
-
-# add edges
-graph.add_edge(a, c, 9)
-graph.add_edge(a, b, 2)
-graph.add_edge(a, g, 4)
-graph.add_edge(b, c, 4)
-graph.add_edge(b, d, 2)
-graph.add_edge(b, g, 6)
-graph.add_edge(b, f, 7)
-graph.add_edge(c, d, 3)
-graph.add_edge(d, e, 5)
-graph.add_edge(d, f, 3)
-graph.add_edge(e, f, 3)
-graph.add_edge(e, h, 4)
-graph.add_edge(f, g, 5)
-graph.add_edge(f, h, 4)
-graph.add_edge(g, i, 2)
-graph.add_edge(h, i, 3)
-
-puts "Vertex count: #{graph.vertices.size()}"
-puts "Edge count: #{graph.edges.size()}"
-
-graph.find_shortest_paths(a)
-
-# output
-puts "shortest distance: #{e.distance}"
-print "shortest path: "
-prev = e
-while prev != nil
-  print "#{prev.to_s}, "
-  prev = prev.previous
-end
-puts ""
