@@ -32,15 +32,10 @@ class GraphTest < Test::Unit::TestCase
     end
 
     def test_shortest_path
-        @graph.find_shortest_paths(@a)
-        assert_equal(@e.distance, 9)
-        path = @e.name
-        previous = @e.previous
-        while previous != nil
-            path = path + previous.name
-            previous = previous.previous
-        end
-        path.reverse!
-        assert_equal(path, "abde")
+        shortest_distance, path = @graph.dijkstra_shortest_path(@a, @e)
+        assert_equal(shortest_distance, 9)
+        path_s = ""
+        path.each { |node| path_s = path_s + node.to_s }
+        assert_equal(path_s, "abde")
     end
 end
