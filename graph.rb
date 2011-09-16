@@ -91,4 +91,29 @@ class Graph
         
         return distances[finish], path.reverse
     end
+
+    def bellman_ford_shortest_path(start, finish)
+        predecessors, distances = Hash.new, Hash.new
+        distances[start] = 0
+        
+        for i in (1..@vertices.size-1)
+            @edges.each do |edge|
+                u_dist = distances[edge.in_vertex] || 1.0/0.0
+                v_dist = distances[edge.out_vertex] || 1.0/0.0
+                if u_dist + edge.distance < v_dist
+                    distances[edge.out_vertex] = u_dist + edge.distance
+                    predecessors[edge.out_vertex] = edge.in_vertex
+                end
+            end
+        end
+        path = Array.new
+        previous = finish
+        path << previous
+        while predecessors[previous] != nil
+            previous = predecessors[previous]
+            path << previous if previous != nil
+        end
+
+        return distances[finish], path.reverse
+    end
 end

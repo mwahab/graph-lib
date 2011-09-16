@@ -31,11 +31,20 @@ class GraphTest < Test::Unit::TestCase
         assert_equal(@graph.edges.size(), 32)
     end
 
-    def test_shortest_path
+    def test_dijkstra
         shortest_distance, path = @graph.dijkstra_shortest_path(@a, @e)
         assert_equal(shortest_distance, 9)
         path_s = ""
         path.each { |node| path_s = path_s + node.to_s }
         assert_equal(path_s, "abde")
+    end
+
+    def test_bellman_ford
+        shortest_distance, path = @graph.bellman_ford_shortest_path(@a, @e)
+        assert_equal(shortest_distance, 9)
+        path_s = ""
+        path.each { |node| path_s = path_s + node.to_s }
+        assert_equal(path_s, "abde")
+
     end
 end
