@@ -45,6 +45,14 @@ class GraphTest < Test::Unit::TestCase
         path_s = ""
         path.each { |node| path_s = path_s + node.to_s }
         assert_equal(path_s, "abde")
+    end
 
+    def test_prim_minimum_spanning_tree
+        mst = @graph.prim_minimum_spanning_tree
+        #mst.each { |edge| puts "(#{edge.in_vertex.to_s}, #{edge.out_vertex.to_s}, #{edge.distance})" }
+        assert_equal(mst.size, 8)
+        mst_sum = 0
+        mst.each { |edge| mst_sum += edge.distance }
+        assert_equal(mst_sum, 22)
     end
 end

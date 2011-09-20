@@ -116,4 +116,23 @@ class Graph
 
         return distances[finish], path.reverse
     end
+
+    def prim_minimum_spanning_tree
+        visited, mst = Array.new, Array.new
+        visited << @vertices.first
+        while visited.size != @vertices.size
+            min_distance, min_edge = 1.0 / 0.0, nil
+            visited.each do |u|
+                get_edges(u).each do |edge|
+                    if mst.find_index(edge) == nil && visited.find_index(edge.out_vertex) == nil && edge.in_vertex == u && edge.distance < min_distance
+                        min_distance, min_edge = edge.distance, edge
+                    end
+                end
+            end
+            visited << min_edge.out_vertex
+            mst << min_edge           
+        end
+
+        return mst
+    end
 end
